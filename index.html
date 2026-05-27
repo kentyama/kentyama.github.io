@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>プライベートAIラボラトリー - 富裕層や投資家の秘密のAI要塞</title>
+    <meta property="og:title" content="プライベートAIラボラトリー">
+    <meta property="og:description" content="富裕層や投資家のための、検閲なし・完全独立型AI要塞の構築。">
+    <meta property="og:image" content="kentaro_yamada.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <style>
+        :root {
+            --bg-color: #0d1117;
+            --card-bg: #161b22;
+            --text-color: #c9d1d9;
+            --accent-color: #58a6ff;
+            --border-color: #30363d;
+            --highlight-color: #ffffff;
+            --alert-color: #ffa657;
+            --note-color: #41c9b4;
+            --youtube-color: #ff0000;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 5%;
+            background-color: rgba(22, 27, 34, 0.98);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 10px;
+            border: 2px solid var(--accent-color);
+        }
+
+        .site-title {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: var(--accent-color);
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .social-nav {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-nav a {
+            color: var(--text-color);
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            align-items: center;
+            opacity: 0.7;
+        }
+
+        .social-nav a:hover {
+            opacity: 1;
+            transform: translateY(-3px) scale(1.1);
+        }
+
+        .social-nav a.nav-note:hover { color: var(--note-color); filter: drop-shadow(0 0 5px rgba(65,201,180,0.5)); }
+        .social-nav a.nav-youtube:hover { color: var(--youtube-color); filter: drop-shadow(0 0 5px rgba(255,0,0,0.5)); }
+
+        .social-nav svg {
+            width: 22px;
+            height: 22px;
+            fill: currentColor;
+        }
+
+        .social-sidebar {
+            position: fixed;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            z-index: 999;
+        }
+
+        .social-sidebar a {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
+            text-decoration: none;
+            transition: all 0.3s;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+        }
+
+        .social-sidebar a:hover {
+            transform: translateX(-5px);
+            border-color: var(--accent-color);
+        }
+
+        .social-sidebar svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+        }
+
+        .contact-info-top {
+            text-align: right;
+        }
+
+        .tel-number {
+            font-size: 1rem;
+            font-weight: bold;
+            color: var(--text-color);
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 120px 5%;
+            background: linear-gradient(180deg, rgba(13, 17, 23, 0.4) 0%, #0d1117 100%), url('image.png') no-repeat center center;
+            background-size: cover;
+            background-attachment: fixed;
+            position: relative;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(circle at center, rgba(30, 41, 59, 0.7) 0%, rgba(13, 17, 23, 0.95) 100%);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.8);
+        }
+        
+        .hero p.subtitle {
+            font-size: 1.2rem;
+            color: #e6edf3;
+            margin-top: 15px;
+            margin-bottom: 35px;
+            font-weight: 300;
+            letter-spacing: 0.1em;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+        }
+
+        .btn-contact {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: #ffffff;
+            padding: 15px 40px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: transform 0.2s, background-color 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 20px rgba(88, 166, 255, 0.3);
+        }
+
+        .btn-contact:hover {
+            background-color: #79c0ff;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(88, 166, 255, 0.5);
+        }
+
+        .btn-featured {
+            background-color: #2ea44f !important;
+            box-shadow: 0 4px 20px rgba(46, 164, 79, 0.3);
+        }
+
+        .btn-featured:hover {
+            background-color: #34d058 !important;
+            box-shadow: 0 6px 25px rgba(46, 164, 79, 0.5);
+        }
+
+        .section {
+            padding: 40px 10%;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 40px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+        }
+
+        .showcase-container {
+            margin: 25px 0;
+            text-align: center;
+        }
+
+        .showcase-img {
+            width: 100%;
+            max-width: 820px;
+            height: auto;
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+            transition: transform 0.3s ease;
+        }
+
+        .showcase-caption {
+            font-size: 0.9rem;
+            color: #8b949e;
+            margin-top: 12px;
+            letter-spacing: 0.05em;
+        }
+
+        h2 {
+            border-left: 4px solid var(--accent-color);
+            padding-left: 15px;
+            margin-bottom: 25px;
+            color: var(--accent-color);
+        }
+
+        h3 {
+            color: var(--accent-color);
+            margin-top: 25px;
+        }
+
+        .profile-container {
+            display: flex;
+            align-items: flex-start;
+            gap: 30px;
+            margin-bottom: 20px;
+        }
+
+        .profile-img-large {
+            width: 150px;
+            height: 150px;
+            border-radius: 15px;
+            object-fit: cover;
+            border: 1px solid var(--border-color);
+            flex-shrink: 0;
+        }
+
+        .experience-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .experience-list li {
+            margin-bottom: 12px;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .experience-list li::before {
+            content: "◆";
+            position: absolute;
+            left: 0;
+            color: var(--accent-color);
+        }
+
+        .experience-list a {
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+
+        .experience-list a:hover {
+            text-decoration: underline;
+        }
+        
+        .plan-container {
+            display: flex;
+            gap: 25px;
+            margin-top: 25px;
+        }
+
+        .plan-card {
+            flex: 1;
+            background-color: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border-color);
+            padding: 30px;
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .plan-card:hover {
+            border-color: var(--accent-color);
+            transform: translateY(-5px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+        }
+
+        .plan-card.featured {
+            border: 2px solid var(--accent-color);
+            background: linear-gradient(180deg, rgba(22, 27, 34, 0.8) 0%, rgba(88, 166, 255, 0.03) 100%);
+            position: relative;
+        }
+
+        .plan-card.featured::before {
+            content: "RECOMMENDED";
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--accent-color);
+            color: #ffffff;
+            padding: 2px 15px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            border-radius: 10px;
+            letter-spacing: 0.1em;
+        }
+
+        .plan-title {
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: var(--accent-color);
+            text-align: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--border-color);
+            line-height: 1.4;
+        }
+
+        .plan-price {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .plan-price .amount {
+            font-size: 2rem;
+            color: var(--highlight-color);
+            font-weight: bold;
+            letter-spacing: 0.05em;
+        }
+
+        .plan-price .tax {
+            color: #8b949e;
+            font-size: 0.8rem;
+            display: block;
+            margin-top: 5px;
+        }
+
+        .plan-features {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            flex-grow: 1;
+        }
+        
+        .reason-box {
+            border: 1px solid var(--border-color);
+            background-color: rgba(88, 166, 255, 0.05);
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            border-left: 4px solid var(--accent-color);
+        }
+
+        .youtube-banner {
+            border: 1px solid var(--youtube-color);
+            background: linear-gradient(145deg, var(--card-bg) 0%, #1e1111 100%);
+            padding: 40px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .btn-youtube {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background-color: var(--youtube-color);
+            color: #ffffff;
+            padding: 15px 35px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            margin-top: 20px;
+        }
+
+        .btn-youtube:hover {
+            background-color: #cc0000;
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.3);
+        }
+
+        .btn-youtube svg {
+            width: 24px;
+            height: 24px;
+            fill: white;
+        }
+
+        .alert-text {
+            color: var(--alert-color);
+            font-weight: bold;
+        }
+
+        footer {
+            text-align: center;
+            padding: 50px 5%;
+            border-top: 1px solid var(--border-color);
+            background-color: var(--card-bg);
+            margin-top: 50px;
+        }
+
+        .footer-social {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .footer-social a {
+            color: #8b949e;
+            text-decoration: none;
+            transition: all 0.3s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 0.8rem;
+            gap: 10px;
+            padding: 10px;
+            border-radius: 10px;
+        }
+
+        .footer-social a:hover {
+            background: rgba(255,255,255,0.05);
+            transform: scale(1.05);
+        }
+
+        .footer-social a.f-note:hover { color: var(--note-color); }
+        .footer-social a.f-youtube:hover { color: var(--youtube-color); }
+
+        .footer-social svg {
+            width: 28px;
+            height: 28px;
+            fill: currentColor;
+        }
+
+        .address {
+            margin-bottom: 20px;
+            font-style: normal;
+            color: #8b949e;
+        }
+
+        .copyright {
+            font-size: 0.9rem;
+            color: #484f58;
+        }
+        
+        @media (max-width: 768px) {
+            .plan-container {
+                flex-direction: column;
+                gap: 20px;
+            }
+            .plan-card:hover {
+                transform: none;
+            }
+        }
+
+        @media (max-width: 600px) {
+            header { padding: 8px 3%; flex-direction: column; gap: 10px; }
+            .header-right { flex-direction: column; gap: 10px; }
+            .social-sidebar { display: none; }
+            .logo-img { width: 32px; height: 32px; }
+            .site-title { font-size: 0.9rem; }
+            .tel-number { font-size: 0.9rem; }
+            .hero { padding: 80px 5%; background-attachment: scroll; }
+            .hero h1 { font-size: 1.8rem; }
+            .hero p.subtitle { font-size: 1.1rem; }
+            .profile-container { flex-direction: column; align-items: center; text-align: center; }
+            .profile-img-large { width: 120px; height: 120px; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="logo-area">
+        <img src="kentaro_yamada.png" alt="山田健太郎" class="logo-img">
+        <div class="site-title">プライベートAIラボラトリー</div>
+    </div>
+    <div class="header-right">
+        <nav class="social-nav">
+            <a href="https://note.com/yamada_kentaro" target="_blank" class="nav-note" title="note">
+                <svg viewBox="0 0 24 24"><path d="M17.8 2H6.2C3.9 2 2 3.9 2 6.2v11.6C2 20.1 3.9 22 6.2 22h11.6c2.3 0 4.2-1.9 4.2-4.2V6.2C22 3.9 20.1 2 17.8 2zm.7 15.5c0 .4-.3.7-.7.7H6.2c-.4 0-.7-.3-.7-.7V6.2c0-.4.3-.7.7-.7h11.6c.4 0 .7.3.7.7v11.3zM9.5 8.5h5v1h-5v-1zm0 3h5v1h-5v-1zm0 3h3v1h-3v-1z"/></svg>
+            </a>
+            <a href="https://www.youtube.com/@PrivateAILaboratory" target="_blank" class="nav-youtube" title="YouTube">
+                <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93-.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+            </a>
+        </nav>
+        <div class="contact-info-top">
+            <span style="font-size: 0.75rem; color: #8b949e; letter-spacing: 0.05em;">お電話でのお申込：10:00〜17:00（土日祝も受付）</span><br>
+            <a href="tel:07084077625" class="tel-number">📞 070-8407-7625</a>
+        </div>
+    </div>
+</header>
+
+<div class="social-sidebar">
+    <a href="https://note.com/yamada_kentaro" target="_blank" style="color: var(--note-color)" title="note">
+        <svg viewBox="0 0 24 24"><path d="M17.8 2H6.2C3.9 2 2 3.9 2 6.2v11.6C2 20.1 3.9 22 6.2 22h11.6c2.3 0 4.2-1.9 4.2-4.2V6.2C22 3.9 20.1 2 17.8 2zm.7 15.5c0 .4-.3.7-.7.7H6.2c-.4 0-.7-.3-.7-.7V6.2c0-.4.3-.7.7-.7h11.6c.4 0 .7.3.7.7v11.3zM9.5 8.5h5v1h-5v-1zm0 3h5v1h-5v-1zm0 3h3v1h-3v-1z"/></svg>
+    </a>
+    <a href="https://www.youtube.com/@PrivateAILaboratory" target="_blank" style="color: var(--youtube-color)" title="YouTube">
+        <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93-.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+    </a>
+</div>
+
+<section class="hero">
+    <div class="hero-content">
+        <h1>プライベートAIラボラトリー</h1>
+        <p class="subtitle">〜富裕層や投資家のための、秘密のAI要塞〜</p>
+        <div style="margin-top: 20px; color: var(--accent-color); font-size: 1.1rem; letter-spacing: 0.2em; font-weight: bold;">
+            「知能の主権」を取り戻した者だけが、風の時代を制する。
+        </div>
+        <br>
+        <a href="https://forms.gle/7ZkhPsV3XZtw35sA6" target="_blank" class="btn-contact">要塞の構築を相談する</a>
+    </div>
+</section>
+
+<section class="section">
+
+   <div class="card">
+        <h2>なぜ「プライベートAI」が必要なのか</h2>
+        <div class="reason-box">
+            <p style="margin: 0; font-size: 1.1rem; color: var(--highlight-color); font-weight: bold;">
+                「風の時代」—— それは、既成概念や外部の制約に縛られず、個の「知性」と「直感」が真の価値を決める時代です。
+            </p>
+        </div>
+        <p>
+            現在、広く普及している<strong>ChatGPTやGeminiやClaude Codeなどのクラウド型AIは、入力した内容がサーバーへ送信され、学習データとして二次利用されるリスクを孕んでいます。</strong>
+        </p>
+        <p>
+            あなたがAIに相談した「独自の投資戦略」や「資産状況」は、知らぬ間に運営企業の手元に渡っているかもしれません。
+        </p>
+        <p>
+            真に資産を守るべき方にとって必要なのは、外部ネットワークから遮断された場所で、<strong>一切の制限（検閲）を排除した、あなたのためだけに働く「完全プライベートAI」</strong>です。
+        </p>
+        <p>
+            <strong><span class="alert-text">「お答えできません」と拒否されることなく、忖度なしにすべての問いに答える自由な知性。</span></strong>
+        </p>
+        <p>
+            情報の主権を、あなたの手に取り戻しましょう。
+        </p>
+
+        <div class="showcase-container">
+            <img src="image.png" alt="プライベートAI要塞 設置イメージ" class="showcase-img">
+            <div class="showcase-caption">【プライベートAI要塞】完全なる秘匿性を担保した、至高の思考・研究空間</div>
+        </div>
+    </div>
+
+    <div class="youtube-banner">
+        <h2 style="border: none; padding: 0; color: var(--highlight-color); margin-bottom: 15px;">ラボの実践を、動画で体感する</h2>
+        <p style="font-size: 1.1rem; color: #8b949e; margin-bottom: 25px;">
+            「プライベートAIは、クラウド型と何が違うのか？」<br>
+            YouTubeチャンネルでは、実際の動作デモや、忖度なしのAI活用術を公開しています。
+        </p>
+        <a href="https://www.youtube.com/@PrivateAILaboratory" target="_blank" class="btn-youtube">
+            <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93-.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+            YouTubeで最新動画を視聴する
+        </a>
+    </div>
+    
+   <div class="card">
+        <h2>代表：山田 健太郎（Kentaro Yamada）</h2>
+        <div class="profile-container">
+            <img src="kentaro_yamada.png" alt="山田健太郎 肖像" class="profile-img-large">
+            <div class="profile-text">
+                <p style="margin-top: 0; font-weight: bold; color: var(--highlight-color);">
+                    「風の時代に、自由に生きる。」
+                </p>
+                <p>
+                    宮城県仙台市出身。大学卒業後、ヤフー株式会社（Yahoo! JAPAN）に入社し、システムエンジニアとして大規模システム開発・運用に従事。
+                </p>
+                <p>
+                    現在は、検閲や監視から解き放たれた「情報の主権」を守る個人専用AI環境（AI要塞）の構築を提唱。富裕層の皆様の「知能の守護者」として活動しています。
+                </p>
+            </div>
+        </div>
+        
+        <h3>主な経歴</h3>
+        <ul class="experience-list">
+            <li>ヤフー株式会社にてエンジニアとして大規模システムの開発に従事</li>
+            <li>検閲や監視のない、完全独立型ローカルAI環境（AI要塞）の構築</li>
+            <li>富裕層や経営者の資産防衛に特化した、完全プライベートAI活用術（投資分析等）の研究</li>
+            <li>危険物乙4資格試験対策サイト「<a href="http://www.shoubo-shiken.jp/" target="_blank">やさしい乙4対策講座</a>」の運営</li>
+            <li>YouTubeチャンネル「<a href="https://www.youtube.com/@shouboshiken" target="_blank">やさしい乙4対策講座</a>」の運営</li>
+            <li>YouTubeチャンネル「<a href="https://www.youtube.com/@kentaro_yamada" target="_blank">やさしいシニアスマホ教室</a>」の運営</li>
+            <li>YouTubeチャンネル「<a href="https://www.youtube.com/@PrivateAILaboratory" target="_blank">プライベートAIラボラトリー</a>」の運営</li>
+        </ul>
+        <p>最新テクノロジーを「やさしく」解き明かし、皆様の資産とプライバシーを守るための「軍師」として、活動を続けてまいります。</p>
+    </div>
+    
+  <div class="card">
+        <h2>サービス・導入費用</h2>
+        <p>富裕層や投資家の方々に、最高峰の「プライベートAI要塞」を構築し、その後1年間にわたり山田が技術的な全責任を負う専属サポートを提供します。ハードウェア一式から運用まで、すべてが含まれたプレミアムパッケージです。</p>
+        
+        <div class="plan-container">
+            <div class="plan-card">
+                <div class="plan-title">プライベートAI要塞<br>1年プレミアムパッケージ</div>
+                <div class="plan-price">
+                    <span class="amount">11,000,000円</span>
+                    <span class="tax">（税込 / 1年間の全サポート込）</span>
+                </div>
+                <div class="plan-features">
+                    <strong>【究極のハードウェア構築】</strong><br>
+                    ・最高峰AIパソコン一式<br>
+                    ・高精細液晶ディスプレイ一式<br>
+                    ・完全独立型・検閲なし「ローカルLLM（大規模言語モデル）」環境の構築<br><br>
+                    <strong>【1年間の専属技術サポート】</strong><br>
+                    ・最新の最高性能AIパッケージへのアップデート<br>
+                    ・設備メンテナンス<br>
+                    ・実務・投資へのAI活用アドバイス
+                </div>
+                <div style="text-align: center;">
+                    <a href="https://forms.gle/kk4XLBbybHqCsmyp9" target="_blank" class="btn-contact" style="display: block; width: 100%; box-sizing: border-box; padding: 15px 0; font-size: 1.1rem; box-shadow: 0 4px 15px rgba(88, 166, 255, 0.2);">1年プレミアムパッケージを申し込む</a>
+                </div>
+            </div>
+
+            <div class="plan-card featured">
+                <div class="plan-title">プライベートAI要塞<br>1年プレミアムパッケージプラス</div>
+                <div class="plan-price">
+                    <span class="amount">12,100,000円</span>
+                    <span class="tax">（税込 / 1年間の全サポート・環境構築込）</span>
+                </div>
+                <div class="plan-features">
+                    <strong>【究極のハードウェア構築】</strong><br>
+                    ・最高峰AIパソコン一式<br>
+                    ・高精細液晶ディスプレイ一式<br>
+                    ・完全独立型・検閲なし「ローカルLLM（大規模言語モデル）」環境の構築<br><br>
+                    <strong>【1年間の専属技術サポート】</strong><br>
+                    ・最新の最高性能AIパッケージへのアップデート<br>
+                    ・設備メンテナンス<br>
+                    ・実務・投資へのAI活用アドバイス<br><br>
+                    <strong>【至高の執務・研究空間】</strong><br>
+                    ・厳選された高品質PCデスク及びチェア一式（山田が自ら愛用・検証済みの機材）<br>
+                    ・ご指定の場所への設置・調整まで全てワンストップでの手配一式
+                </div>
+                <div style="text-align: center;">
+                    <a href="https://forms.gle/kk4XLBbybHqCsmyp9" target="_blank" class="btn-contact btn-featured" style="display: block; width: 100%; box-sizing: border-box; padding: 15px 0; font-size: 1.1rem; box-shadow: 0 4px 15px rgba(46, 164, 79, 0.3);">1年プレミアムパッケージプラスを申し込む</a>
+                </div>
+            </div>
+        </div>
+
+        <div style="margin-top: 25px; padding: 20px; background-color: rgba(255, 166, 87, 0.05); border-radius: 10px; border: 1px dashed var(--border-color);">
+            <p style="margin: 0 0 15px 0; font-size: 1rem; color: var(--highlight-color);">
+                <span class="alert-text">※</span> <strong>対応エリア：</strong>東京23区内は無料で訪問・設置・サポート対応いたします。
+            </p>
+            <p style="margin: 0 0 15px 0; font-size: 1rem; color: var(--highlight-color);">
+                <span class="alert-text">※</span> <strong>本パッケージには、PC本体および液晶ディスプレイ及び周辺機器一式の代金が含まれており、1年間のサポート期間終了後も、返却の必要はなく、そのままお客様の資産として末永くご利用いただけます。</strong>
+            </p>
+            <p style="margin: 0 0 15px 0; font-size: 1rem; color: var(--highlight-color);">
+                <span class="alert-text">※</span> <strong>2年目以降の継続サポートについて：</strong><br>
+                次年度以降は機材代が不要なため、年額5,500,000円～にて、最新の最高性能AIパッケージへのアップデートおよび山田による専属技術サポートを継続いただけます。
+            </p>
+            <p style="margin: 0 0 15px 0; font-size: 1rem; color: var(--highlight-color);">
+                <span class="alert-text">※</span> <strong>故障時の修理対応について：</strong>故障時はメーカー保証の取次や、山田による部品交換作業を責任を持って行います（保証外部品代は実費）。
+            </p>
+            <p style="margin: 0 0 15px 0; font-size: 1rem; color: var(--highlight-color);">
+                <span class="alert-text">※</span> <strong>法人様での導入について：</strong><br>
+                上記は個人様向けの特別価格です。法人様での導入・サポートは、引き受けるエンジニアリングの責任範囲とサポート工数が大幅に増大するため、別途お見積り（33,000,000円〜）となります。
+            </p>
+            <p style="margin: 0; font-size: 1rem; color: var(--highlight-color); margin-top: 15px;">
+                <span class="alert-text">※</span> <strong>お取引の形態について：</strong><br>
+                本パッケージの提供およびサポートは、オーナー様との「直接契約」のみに限らせていただきます。機密保持の徹底および最高品質のエンジニアリングを直接担保するため、中間の代理店やコンサルティング会社等を挟んだ、いわゆる下請けの形での業務参画や、仲介契約は一切お引き受けいたしません。
+            </p>
+        </div>
+    </div>
+    
+</section>
+
+<footer>
+    <div class="footer-social">
+        <a href="https://note.com/yamada_kentaro" target="_blank" class="f-note">
+            <svg viewBox="0 0 24 24"><path d="M17.8 2H6.2C3.9 2 2 3.9 2 6.2v11.6C2 20.1 3.9 22 6.2 22h11.6c2.3 0 4.2-1.9 4.2-4.2V6.2C22 3.9 20.1 2 17.8 2zm.7 15.5c0 .4-.3.7-.7.7H6.2c-.4 0-.7-.3-.7-.7V6.2c0-.4.3-.7.7-.7h11.6c.4 0 .7.3.7.7v11.3zM9.5 8.5h5v1h-5v-1zm0 3h5v1h-5v-1zm0 3h3v1h-3v-1z"/></svg>
+            <span>note</span>
+        </a>
+        <a href="https://www.youtube.com/@PrivateAILaboratory" target="_blank" class="f-youtube">
+            <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93-.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+            <span>YouTube</span>
+        </a>
+    </div>
+   <div style="margin-bottom: 20px;">
+        <span style="font-size: 0.9rem; color: #8b949e;">お電話でのお申込（受付：10:00〜17:00）</span><br>
+        <a href="tel:07084077625" style="font-size: 1.5rem; font-weight: bold; color: var(--accent-color); text-decoration: none;">
+            📞 070-8407-7625
+        </a>
+        <div style="margin-top: 15px; margin-bottom: 15px;">
+            <p style="font-size: 0.8rem; color: #8b949e; border: 1px solid var(--border-color); padding: 10px; display: inline-block; border-radius: 5px; line-height: 1.5; background-color: rgba(255, 255, 255, 0.01);">
+                <strong style="color: var(--alert-color);">【営業・勧誘は一切お断りしております】</strong><br>
+                業務の妨げとなりますので、AI関連・広告等の営業電話は固くお断りいたします。
+            </p>
+        </div>
+        <p style="font-size: 0.8rem; color: #8b949e; margin-top: 5px;">
+            ※土日・祝日も柔軟に対応いたします。<br>
+            不在時は留守番電話にて承ります。<br>
+            フォームからは24時間受付中です。
+        </p>
+    </div>
+    <address class="address">
+        〒104-0053 東京都中央区晴海1-8-5-1102<br>
+        プライベートAIラボラトリー
+    </address>
+    <div style="margin: 15px 0 10px 0;">
+        <a href="tokushoho.html" style="color: #8b949e; font-size: 0.85rem; text-decoration: none;">
+            特定商取引法に基づく表記
+        </a>
+    </div>
+    <div class="copyright">
+        &copy; Kentaro Yamada. All rights reserved.
+    </div>
+</footer>
+
+</body>
+</html>
