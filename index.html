@@ -19,6 +19,9 @@
             --alert-color: #ffa657;
             --note-color: #41c9b4;
             --youtube-color: #ff0000;
+            --wantedly-color: #00a4bb;
+            --qiita-color: #55c500;
+            --amazon-color: #ff9900;
         }
 
         body {
@@ -89,6 +92,8 @@
 
         .social-nav a.nav-note:hover { color: var(--note-color); filter: drop-shadow(0 0 5px rgba(65,201,180,0.5)); }
         .social-nav a.nav-youtube:hover { color: var(--youtube-color); filter: drop-shadow(0 0 5px rgba(255,0,0,0.5)); }
+        .social-nav a.nav-wantedly:hover { color: var(--wantedly-color); filter: drop-shadow(0 0 5px rgba(0,164,187,0.5)); }
+        .social-nav a.nav-qiita:hover { color: var(--qiita-color); filter: drop-shadow(0 0 5px rgba(85,197,0,0.5)); }
 
         .social-nav svg {
             width: 22px;
@@ -224,6 +229,42 @@
             padding: 40px;
             border-radius: 15px;
             margin-bottom: 30px;
+        }
+
+        .kindle-banner {
+            border: 1px solid var(--amazon-color);
+            background: linear-gradient(145deg, var(--card-bg) 0%, #231a0f 100%);
+            padding: 40px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .btn-kindle {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background-color: var(--amazon-color);
+            color: #111111;
+            padding: 15px 35px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            margin-top: 20px;
+        }
+
+        .btn-kindle:hover {
+            background-color: #ffb347;
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(255, 153, 0, 0.4);
+        }
+
+        .btn-kindle svg {
+            width: 22px;
+            height: 22px;
+            fill: #111111;
         }
 
         .showcase-container {
@@ -446,7 +487,8 @@
         .footer-social {
             display: flex;
             justify-content: center;
-            gap: 30px;
+            flex-wrap: wrap;
+            gap: 20px;
             margin-bottom: 30px;
         }
 
@@ -459,8 +501,9 @@
             align-items: center;
             font-size: 0.8rem;
             gap: 10px;
-            padding: 10px;
+            padding: 10px 15px;
             border-radius: 10px;
+            min-width: 70px;
         }
 
         .footer-social a:hover {
@@ -470,6 +513,8 @@
 
         .footer-social a.f-note:hover { color: var(--note-color); }
         .footer-social a.f-youtube:hover { color: var(--youtube-color); }
+        .footer-social a.f-wantedly:hover { color: var(--wantedly-color); }
+        .footer-social a.f-qiita:hover { color: var(--qiita-color); }
 
         .footer-social svg {
             width: 28px;
@@ -528,9 +573,15 @@
             <a href="https://www.youtube.com/@PrivateAILaboratory" target="_blank" class="nav-youtube" title="YouTube">
                 <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93-.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
             </a>
+            <a href="https://www.wantedly.com/id/kentyama" target="_blank" class="nav-wantedly" title="Wantedly">
+                <svg viewBox="0 0 24 24"><path d="M19.4 15.1c0 .4-.1.7-.3 1l-6 6c-.3.3-.6.4-1 .4s-.7-.1-1-.4l-6-6c-.2-.3-.3-.6-.3-1V6.2c0-.4.1-.7.3-1l6-6c.3-.3.6-.4 1-.4s.7.1 1 .4l6 6c.2.3.3.6.3 1v8.9zm-2-7.5l-4.4-4.4c-.1-.1-.3-.2-.5-.2s-.4.1-.5.2L7.6 7.6c-.1.1-.2.3-.2.5s.1.4.2.5l4.4 4.4c.1.1.3.2.5.2s.4-.1.5-.2l4.4-4.4c.1-.1.2-.3.2-.5s-.1-.4-.2-.5z"/></svg>
+            </a>
+            <a href="https://qiita.com/kentyama" target="_blank" class="nav-qiita" title="Qiita">
+                <svg viewBox="0 0 24 24"><path d="M22.5 12c0 5.8-4.7 10.5-10.5 10.5S1.5 17.8 1.5 12 6.2 1.5 12 1.5 22.5 6.2 22.5 12zm-5.7-2.1c-.3-.3-.7-.3-1 0L12 13.7 8.2 9.9c-.3-.3-.7-.3-1 0s-.3.7 0 1l4.3 4.3c.3.3.7.3 1 0l4.3-4.3c.3-.3.3-.7 0-1z"/></svg>
+            </a>
         </nav>
         <div class="contact-info-top">
-            <span style="font-size: 0.75rem; color: #8b949e; letter-spacing: 0.05em;">お電話でのお申込：10:00〜17:00（土日祝も受付）</span><br>
+            <span style="font-size: 0.75rem; color: #8b949e; letter-spacing: 0.05em;">お電話でのお申込：10:00～17:00（土日祝も受付）</span><br>
             <a href="tel:07084077625" class="tel-number">📞 070-8407-7625</a>
         </div>
     </div>
@@ -543,12 +594,18 @@
     <a href="https://www.youtube.com/@PrivateAILaboratory" target="_blank" style="color: var(--youtube-color)" title="YouTube">
         <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93-.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
     </a>
+    <a href="https://www.wantedly.com/id/kentyama" target="_blank" style="color: var(--wantedly-color)" title="Wantedly">
+        <svg viewBox="0 0 24 24"><path d="M19.4 15.1c0 .4-.1.7-.3 1l-6 6c-.3.3-.6.4-1 .4s-.7-.1-1-.4l-6-6c-.2-.3-.3-.6-.3-1V6.2c0-.4.1-.7.3-1l6-6c.3-.3.6-.4 1-.4s.7.1 1 .4l6 6c.2.3.3.6.3 1v8.9zm-2-7.5l-4.4-4.4c-.1-.1-.3-.2-.5-.2s-.4.1-.5.2L7.6 7.6c-.1.1-.2.3-.2.5s.1.4.2.5l4.4 4.4c.1.1.3.2.5.2s.4-.1.5-.2l4.4-4.4c.1-.1.2-.3.2-.5s-.1-.4-.2-.5z"/></svg>
+    </a>
+    <a href="https://qiita.com/kentyama" target="_blank" style="color: var(--qiita-color)" title="Qiita">
+        <svg viewBox="0 0 24 24"><path d="M22.5 12c0 5.8-4.7 10.5-10.5 10.5S1.5 17.8 1.5 12 6.2 1.5 12 1.5 22.5 6.2 22.5 12zm-5.7-2.1c-.3-.3-.7-.3-1 0L12 13.7 8.2 9.9c-.3-.3-.7-.3-1 0s-.3.7 0 1l4.3 4.3c.3.3.7.3 1 0l4.3-4.3c.3-.3.3-.7 0-1z"/></svg>
+    </a>
 </div>
 
 <section class="hero">
     <div class="hero-content">
         <h1>プライベートAIラボラトリー</h1>
-        <p class="subtitle">〜富裕層や投資家のための、秘密のAI要塞〜</p>
+        <p class="subtitle">～富裕層や投資家のための、秘密のAI要塞～</p>
         <div style="margin-top: 20px; color: var(--accent-color); font-size: 1.1rem; letter-spacing: 0.2em; font-weight: bold;">
             「知能の主権」を取り戻した者だけが、風の時代を制する。
         </div>
@@ -559,11 +616,23 @@
 
 <section class="section">
 
+    <div class="kindle-banner">
+        <span style="color: var(--amazon-color); font-weight: bold; font-size: 0.85rem; letter-spacing: 0.2em; display: block; margin-bottom: 10px;">NEW RELEASE</span>
+        <h2 style="border: none; padding: 0; color: var(--highlight-color); margin-bottom: 15px; font-size: 1.6rem;">【新刊】Kindle電子書籍を出版いたしました</h2>
+        <p style="font-size: 1.05rem; color: #e6edf3; max-width: 700px; margin: 0 auto 20px auto;">
+            「風の時代」の資産防衛と、GAFAに依存しない独立知能の構築。プライベートAIがもたらす未来の投資・防衛戦略のすべてを凝縮した一冊。
+        </p>
+        <a href="https://www.amazon.co.jp/dp/B0H53VCJKX" target="_blank" class="btn-kindle">
+            <svg viewBox="0 0 24 24"><path d="M21.5 3h-19C1.7 3 1 3.7 1 4.5v15c0 .8.7 1.5 1.5 1.5h19c.8 0 1.5-.7 1.5-1.5v-15c0-.8-.7-.1.5-1.5-1.5zM12 18.5c-2.8 0-5.5-.8-5.5-.8v-9.2s2.7.8 5.5.8 5.5-.8 5.5-.8v9.2s-2.7.8-5.5.8zm0-11c-2.2 0-4 .5-4 .5v1c0 0 1.8-.5 4-.5s4 .5 4 .5v-1s-1.8-.5-4-.5z"/></svg>
+            Amazon Kindleで購入して読む
+        </a>
+    </div>
+
    <div class="card">
         <h2>なぜ「プライベートAI」が必要なのか</h2>
         <div class="reason-box">
             <p style="margin: 0; font-size: 1.1rem; color: var(--highlight-color); font-weight: bold;">
-                「風の時代」—— それは、既成概念や外部の制約に縛られず、個の「知性」と「直感」が真の価値を決める時代です。
+                「風の時代」―― それは、既成概念や外部の制約に縛られず、個の「知性」と「直感」が真の価値を決める時代です。
             </p>
         </div>
         <p>
@@ -710,9 +779,17 @@
             <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93-.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
             <span>YouTube</span>
         </a>
+        <a href="https://www.wantedly.com/id/kentyama" target="_blank" class="f-wantedly">
+            <svg viewBox="0 0 24 24"><path d="M19.4 15.1c0 .4-.1.7-.3 1l-6 6c-.3.3-.6.4-1 .4s-.7-.1-1-.4l-6-6c-.2-.3-.3-.6-.3-1V6.2c0-.4.1-.7.3-1l6-6c.3-.3.6-.4 1-.4s.7.1 1 .4l6 6c.2.3.3.6.3 1v8.9zm-2-7.5l-4.4-4.4c-.1-.1-.3-.2-.5-.2s-.4.1-.5.2L7.6 7.6c-.1.1-.2.3-.2.5s.1.4.2.5l4.4 4.4c.1.1.3.2.5.2s.4-.1.5-.2l4.4-4.4c.1-.1.2-.3.2-.5s-.1-.4-.2-.5z"/></svg>
+            <span>Wantedly</span>
+        </a>
+        <a href="https://qiita.com/kentyama" target="_blank" class="f-qiita">
+            <svg viewBox="0 0 24 24"><path d="M22.5 12c0 5.8-4.7 10.5-10.5 10.5S1.5 17.8 1.5 12 6.2 1.5 12 1.5 22.5 6.2 22.5 12zm-5.7-2.1c-.3-.3-.7-.3-1 0L12 13.7 8.2 9.9c-.3-.3-.7-.3-1 0s-.3.7 0 1l4.3 4.3c.3.3.7.3 1 0l4.3-4.3c.3-.3.3-.7 0-1z"/></svg>
+            <span>Qiita</span>
+        </a>
     </div>
    <div style="margin-bottom: 20px;">
-        <span style="font-size: 0.9rem; color: #8b949e;">お電話でのお申込（受付：10:00〜17:00）</span><br>
+        <span style="font-size: 0.9rem; color: #8b949e;">お電話でのお申込（受付：10:00～17:00）</span><br>
         <a href="tel:07084077625" style="font-size: 1.5rem; font-weight: bold; color: var(--accent-color); text-decoration: none;">
             📞 070-8407-7625
         </a>
@@ -739,7 +816,7 @@
     </div>
     <div class="copyright">
         &copy; Kentaro Yamada. All rights reserved.
-    </div>
+    </address>
 </footer>
 
 </body>
