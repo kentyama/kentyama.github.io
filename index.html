@@ -31,6 +31,7 @@
             background-color: var(--bg-color);
             color: var(--text-color);
             line-height: 1.6;
+            overflow-x: hidden; /* 画面全体が横にブレるのを防止 */
         }
 
         header {
@@ -43,6 +44,7 @@
             position: sticky;
             top: 0;
             z-index: 1000;
+            box-sizing: border-box;
         }
 
         .logo-area {
@@ -199,6 +201,9 @@
             font-size: 1.1rem;
             transition: transform 0.2s, background-color 0.2s, box-shadow 0.2s;
             box-shadow: 0 4px 20px rgba(88, 166, 255, 0.3);
+            box-sizing: border-box;
+            max-width: 100%;
+            text-align: center;
         }
 
         .btn-contact:hover {
@@ -207,20 +212,11 @@
             box-shadow: 0 6px 25px rgba(88, 166, 255, 0.5);
         }
 
-        .btn-featured {
-            background-color: #2ea44f !important;
-            box-shadow: 0 4px 20px rgba(46, 164, 79, 0.3);
-        }
-
-        .btn-featured:hover {
-            background-color: #34d058 !important;
-            box-shadow: 0 6px 25px rgba(46, 164, 79, 0.5);
-        }
-
         .section {
             padding: 40px 10%;
             max-width: 900px;
             margin: 0 auto;
+            box-sizing: border-box;
         }
 
         .card {
@@ -229,6 +225,7 @@
             padding: 40px;
             border-radius: 15px;
             margin-bottom: 30px;
+            box-sizing: border-box;
         }
 
         .kindle-banner {
@@ -238,11 +235,13 @@
             border-radius: 15px;
             margin-bottom: 30px;
             text-align: center;
+            box-sizing: border-box;
         }
 
         .btn-kindle {
             display: inline-flex;
             align-items: center;
+            justify-content: center;
             gap: 12px;
             background-color: var(--amazon-color);
             color: #111111;
@@ -253,6 +252,8 @@
             font-size: 1.1rem;
             transition: all 0.3s;
             margin-top: 20px;
+            box-sizing: border-box;
+            max-width: 100%;
         }
 
         .btn-kindle:hover {
@@ -265,6 +266,7 @@
             width: 22px;
             height: 22px;
             fill: #111111;
+            flex-shrink: 0;
         }
 
         .showcase-container {
@@ -349,10 +351,13 @@
             gap: 25px;
             margin-top: 25px;
             justify-content: center;
+            box-sizing: border-box;
+            width: 100%;
         }
 
         .plan-card {
-            flex: 1;
+            box-sizing: border-box;
+            width: 100%;
             background-color: rgba(255, 255, 255, 0.02);
             border: 1px solid var(--border-color);
             padding: 45px;
@@ -367,27 +372,6 @@
             border-color: var(--accent-color);
             transform: translateY(-5px);
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
-        }
-
-        .plan-card.featured {
-            border: 2px solid var(--accent-color);
-            background: linear-gradient(180deg, rgba(22, 27, 34, 0.8) 0%, rgba(88, 166, 255, 0.03) 100%);
-            position: relative;
-        }
-
-        .plan-card.featured::before {
-            content: "RECOMMENDED";
-            position: absolute;
-            top: -12px;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: var(--accent-color);
-            color: #ffffff;
-            padding: 2px 15px;
-            font-size: 0.75rem;
-            font-weight: bold;
-            border-radius: 10px;
-            letter-spacing: 0.1em;
         }
 
         .plan-title {
@@ -443,11 +427,13 @@
             border-radius: 15px;
             margin-bottom: 30px;
             text-align: center;
+            box-sizing: border-box;
         }
 
         .btn-youtube {
             display: inline-flex;
             align-items: center;
+            justify-content: center;
             gap: 12px;
             background-color: var(--youtube-color);
             color: #ffffff;
@@ -458,6 +444,8 @@
             font-size: 1.1rem;
             transition: all 0.3s;
             margin-top: 20px;
+            box-sizing: border-box;
+            max-width: 100%;
         }
 
         .btn-youtube:hover {
@@ -470,6 +458,7 @@
             width: 24px;
             height: 24px;
             fill: white;
+            flex-shrink: 0;
         }
 
         .alert-text {
@@ -483,6 +472,7 @@
             border-top: 1px solid var(--border-color);
             background-color: var(--card-bg);
             margin-top: 50px;
+            box-sizing: border-box;
         }
 
         .footer-social {
@@ -548,13 +538,23 @@
         }
 
         @media (max-width: 600px) {
-            header { padding: 8px 3%; flex-direction: column; gap: 10px; }
-            .header-right { flex-direction: column; gap: 10px; }
+            header { padding: 10px 4%; flex-direction: column; gap: 10px; }
+            .header-right { flex-direction: column; gap: 10px; width: 100%; }
             .contact-info-top { text-align: center; }
             .social-sidebar { display: none; }
             .logo-img { width: 32px; height: 32px; }
-            .site-title { font-size: 0.9rem; }
-            .tel-number { font-size: 0.9rem; }
+            .site-title { font-size: 0.95rem; }
+            .tel-number { font-size: 1rem; }
+            
+            /* スマホでの余白を最適化してはみ出しを完全に防ぐ */
+            .section { padding: 30px 4%; }
+            .card { padding: 25px 15px; }
+            .kindle-banner, .youtube-banner { padding: 30px 15px; }
+            
+            /* カードが画面幅をはみ出さないようにパディングを縮小 */
+            .plan-card { padding: 25px 20px !important; }
+            .plan-price .amount { font-size: 2.1rem; }
+            
             .hero { padding: 80px 5%; background-attachment: scroll; }
             .hero h1 { font-size: 1.8rem; }
             .hero p.subtitle { font-size: 1.1rem; }
