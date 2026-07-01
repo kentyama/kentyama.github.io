@@ -348,14 +348,15 @@
             display: flex;
             gap: 25px;
             margin-top: 25px;
+            justify-content: center;
         }
 
         .plan-card {
             flex: 1;
             background-color: rgba(255, 255, 255, 0.02);
             border: 1px solid var(--border-color);
-            padding: 30px;
-            border-radius: 12px;
+            padding: 45px;
+            border-radius: 16px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -390,23 +391,23 @@
         }
 
         .plan-title {
-            font-size: 1.25rem;
+            font-size: 1.5rem;
             font-weight: bold;
             color: var(--accent-color);
             text-align: center;
-            margin-bottom: 20px;
-            padding-bottom: 15px;
+            margin-bottom: 25px;
+            padding-bottom: 20px;
             border-bottom: 1px solid var(--border-color);
             line-height: 1.4;
         }
 
         .plan-price {
             text-align: center;
-            margin-bottom: 25px;
+            margin-bottom: 30px;
         }
 
         .plan-price .amount {
-            font-size: 2rem;
+            font-size: 2.6rem;
             color: var(--highlight-color);
             font-weight: bold;
             letter-spacing: 0.05em;
@@ -414,15 +415,15 @@
 
         .plan-price .tax {
             color: #8b949e;
-            font-size: 0.8rem;
+            font-size: 0.9rem;
             display: block;
-            margin-top: 5px;
+            margin-top: 8px;
         }
 
         .plan-features {
-            font-size: 0.95rem;
-            line-height: 1.6;
-            margin-bottom: 30px;
+            font-size: 1rem;
+            line-height: 1.7;
+            margin-bottom: 35px;
             flex-grow: 1;
         }
         
@@ -538,6 +539,9 @@
                 flex-direction: column;
                 gap: 20px;
             }
+            .plan-card {
+                padding: 30px;
+            }
             .plan-card:hover {
                 transform: none;
             }
@@ -546,6 +550,7 @@
         @media (max-width: 600px) {
             header { padding: 8px 3%; flex-direction: column; gap: 10px; }
             .header-right { flex-direction: column; gap: 10px; }
+            .contact-info-top { text-align: center; }
             .social-sidebar { display: none; }
             .logo-img { width: 32px; height: 32px; }
             .site-title { font-size: 0.9rem; }
@@ -605,7 +610,7 @@
 <section class="hero">
     <div class="hero-content">
         <h1>プライベートAIラボラトリー</h1>
-        <p class="subtitle">～富裕層や投資家のための、秘密のAI要塞～</p>
+        <p class="subtitle">～富裕層や投資家のための、秘密 of AI要塞～</p>
         <div style="margin-top: 20px; color: var(--accent-color); font-size: 1.1rem; letter-spacing: 0.2em; font-weight: bold;">
             「知能の主権」を取り戻した者だけが、風の時代を制する。
         </div>
@@ -620,7 +625,7 @@
         <span style="color: var(--amazon-color); font-weight: bold; font-size: 0.85rem; letter-spacing: 0.2em; display: block; margin-bottom: 10px;">NEW RELEASE</span>
         <h2 style="border: none; padding: 0; color: var(--highlight-color); margin-bottom: 15px; font-size: 1.6rem;">【新刊】Kindle電子書籍を出版いたしました</h2>
         <p style="font-size: 1.05rem; color: #e6edf3; max-width: 700px; margin: 0 auto 20px auto;">
-            「風の時代」の資産防衛と、GAFAに依存しない独立知能の構築。プライベートAIがもたらす未来の投資・防衛戦略のでべてを凝縮した一冊。
+            「風の時代」の資産防衛と、GAFAに依存しない独立知能の構築。プライベートAIがもたらす未来の投資・防衛戦略のすべてを凝縮した一冊。
         </p>
         <a href="https://www.amazon.co.jp/dp/B0H53VCJKX" target="_blank" class="btn-kindle">
             <svg viewBox="0 0 24 24"><path d="M21.5 3h-19C1.7 3 1 3.7 1 4.5v15c0 .8.7 1.5 1.5 1.5h19c.8 0 1.5-.7 1.5-1.5v-15c0-.8-.7-.1.5-1.5-1.5zM12 18.5c-2.8 0-5.5-.8-5.5-.8v-9.2s2.7.8 5.5.8 5.5-.8 5.5-.8v9.2s-2.7.8-5.5.8zm0-11c-2.2 0-4 .5-4 .5v1c0 0 1.8-.5 4-.5s4 .5 4 .5v-1s-1.8-.5-4-.5z"/></svg>
@@ -704,7 +709,7 @@
         <p>富裕層や投資家の方々に、最高峰の「プライベートAI要塞」を構築し、その後1年間にわたり技術的な専属サポートを提供します。ハードウェア一式から運用まで、すべてが含まれたプレミアムパッケージです。</p>
         
         <div class="plan-container">
-            <div class="plan-card" style="flex: none; width: 100%; max-width: 500px; margin: 0 auto;">
+            <div class="plan-card" style="flex: none; width: 100%; max-width: 720px; margin: 0 auto;">
                 <div class="plan-title">プライベートAI要塞<br>1年プレミアムパッケージ</div>
                 <div class="plan-price">
                     <span class="amount">11,000,000円</span>
